@@ -6,13 +6,11 @@
 #
 #
 #
-# A Struct is a convenient way to bundle a number of attributes together, 
-# using accessor methods, without having to write an explicit class
 Anagram = Struct.new(:initial_word) do
   def match(words)
     words.select do |word| # monitors given arrays of IO objects, waits until one or more of IO objects are ready for reading
-      self.class.anagrams?(initial_word.downcase, word.downcase) 
-      # Returns the class of obj. This method must always be called with an explicit receiver
+    self.class.anagrams?(initial_word.downcase, word.downcase)
+                           # Returns the class of obj. This method must always be called with an explicit receiver
     end
   end
   # public method :anagrams? (a, b) → TrueClass or FalseClass
@@ -20,3 +18,5 @@ Anagram = Struct.new(:initial_word) do
     !(a == b or a.chars.sort != b.chars.sort)
   end
 end
+myword = Anagram.new("Word Smith")
+myword.detect
