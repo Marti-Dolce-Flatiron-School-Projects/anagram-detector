@@ -5,31 +5,18 @@
 # Contact: me@martidolce.com | https://modis.martidolce.com
 #
 #
-
-class Anagrams
-  attr_accessor :answer
-
-  def initialize(answer)
-	  @answer = answer
-
+#
+# A Struct is a convenient way to bundle a number of attributes together, 
+# using accessor methods, without having to write an explicit class
+Anagram = Struct.new(:initial_word) do
+  def match(words)
+    words.select do |word| # monitors given arrays of IO objects, waits until one or more of IO objects are ready for reading
+      self.class.anagrams?(initial_word.downcase, word.downcase) 
+      # Returns the class of obj. This method must always be called with an explicit receiver
+    end
   end
-  # Ask for user to enter word
-
-  
-  def find_anagrams(answer)
-	  answer.each do |anagram|
-		  answer = gets.chomp
-		  # should detect no matches
-		  if anagram.match == false
-			  puts "Detect no matches"
-		  end
-	  end
-
-	  
-  # should detect a simple anagram
-
-  # should detect an anagram
-
-  # should detect multiple anagrams
+  # public method :anagrams? (a, b) → TrueClass or FalseClass
+  def self.anagrams?(a, b)
+    !(a == b or a.chars.sort != b.chars.sort)
   end
 end
